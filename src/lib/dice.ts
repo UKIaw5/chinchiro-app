@@ -11,6 +11,22 @@ export type Hand = {
   label: string;
 };
 
+/**
+ * 演出の格。
+ * jackpot: 最上級（ピンゾロ・アラシ・シゴロ） / win: 小当たり（○の目）
+ * lose: 負けの役（ヒフミ） / none: 役なし（目なし）
+ */
+export type HandTier = 'jackpot' | 'win' | 'lose' | 'none';
+
+export const HAND_TIERS: Record<HandKind, HandTier> = {
+  pinzoro: 'jackpot',
+  arashi: 'jackpot',
+  shigoro: 'jackpot',
+  me: 'win',
+  hifumi: 'lose',
+  menashi: 'none',
+};
+
 /** 四隅の判定領域（画面の幅・高さに対する割合） */
 export const CORNER_RATIO = 0.2;
 

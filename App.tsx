@@ -1,4 +1,5 @@
 import { useFonts } from 'expo-font';
+import { useKeepAwake } from 'expo-keep-awake';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, GestureResponderEvent, Pressable, StyleSheet, TextStyle, View, useWindowDimensions } from 'react-native';
@@ -48,6 +49,8 @@ const TIER_LOOK: Record<HandTier, { font?: string; style: TextStyle; fromScale: 
 };
 
 export default function App() {
+  // アプリを開いている間は画面を自動で消さない（裏に回されて iOS に終了されるのを防ぐ）
+  useKeepAwake();
   const { width, height } = useWindowDimensions();
   const scene = useRef<DiceSceneHandle>(null);
   const { hand, rolling, roll } = useDiceRoll(scene);
